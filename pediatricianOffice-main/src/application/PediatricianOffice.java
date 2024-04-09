@@ -24,23 +24,55 @@ public class PediatricianOffice extends Application {
 	}
 	
 	@Override
-	public void start(Stage primaryStage) {
-		primaryStage.setTitle("MedBridge Pediatrician Office");
-		
-		LoginPage login = new LoginPage(); //login page
+	public void start(Stage primaryStage) {		
+		LoginPage loginPage = new LoginPage(); //login page
 		VBox signupPage = new VBox(20); //signup page
-		nurseView nurse = new nurseView(); //nurse vitals view
-		PatientView patient = new PatientView(); //patient's view
+		nurseView nurseView = new nurseView(); //nurse vitals view
+		PatientView patientView = new PatientView(); //patient's view
+		DoctorView docView = new DoctorView();
 		
-		login.loginBtn.setOnAction(new EventHandler<>(){
-		@Override
+		ArrayList<Doctor> docs = new ArrayList<Doctor>();
+		ArrayList<Nurse> nurses = new ArrayList<Nurse>();
+		
+		loginPage.loginBtn.setOnAction(new EventHandler<>(){
+			@Override
 			public void handle(ActionEvent event) {	
+				for(Doctor d: docs) {
+					//if name is in doc list, sign in to doc
+				}
+				for(Nurse n: nurses) {
+				//if name is in nurse list, sign in to nurse
+				}
+				
+				//if name is in patient file, sign in + load patient info
 				primaryStage.setScene(new Scene(signupPage));
 				primaryStage.show();
 			}
 		});
-
-		primaryStage.setScene(nurse.createNurseView());
+		loginPage.doctor.setOnAction(new EventHandler<>() {
+			@Override
+			public void handle(ActionEvent e) {
+				primaryStage.setScene(loginPage.doctorLogin());
+				primaryStage.show();
+			}
+		});
+		loginPage.patient.setOnAction(new EventHandler<>() {
+			@Override
+			public void handle(ActionEvent e) {
+				primaryStage.setScene(patientView.createPatientViewScene(primaryStage, loginPage.fName.getText(), loginPage.fName.getText(), loginPage.date));
+				primaryStage.show();
+			}
+		});
+		loginPage.nurse.setOnAction(new EventHandler<>() {
+			@Override
+			public void handle(ActionEvent e) {
+				primaryStage.setScene(nurseView.createNurseView());
+				primaryStage.show();
+			}
+		});
+		
+		primaryStage.setTitle("MedBridge Pediatrician Office");
+		primaryStage.setScene(loginPage.createLogin());
 		primaryStage.show();
 	}
 	public Button createButton(String s, double w, double h) {
