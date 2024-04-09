@@ -25,52 +25,34 @@ public class PediatricianOffice extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		//login page
-		Label medBridge = new Label("MedBridge");
-		medBridge.setFont(new Font(50));
+		primaryStage.setTitle("MedBridge Pediatrician Office");
 		
-		Label subTitle = new Label("PEDIATRICS HEALTH SERVICE");
-		subTitle.setFont(new Font(20));
-		Label fnLabel = new Label("First Name: ");
-		TextField fName = new TextField();
-		Label lnLabel = new Label("Last Name: ");
-		TextField lName = new TextField();
-		Label DOBLabel = new Label("Date of Birth (MM/DD/YYYY)");
-		final DatePicker DOB = new DatePicker();
-		LocalDate date = DOB.getValue();
-		GridPane labels = new GridPane();
-		labels.add(fnLabel, 0, 0);
-		labels.add(fName, 1, 0);
-		labels.add(lnLabel, 0, 1);
-		labels.add(lName, 1, 1);
-		labels.add(DOBLabel, 0, 2);
-		labels.add(DOB, 1, 2);
-		labels.setAlignment(Pos.TOP_CENTER);
+		LoginPage login = new LoginPage(); //login page
+		VBox signupPage = new VBox(20); //signup page
+		nurseView nurse = new nurseView(); //nurse vitals view
 		
-		//signup page
-		VBox signupPage = new VBox(20);
-		
-		
-		
-		
-		Button loginBtn = new Button("Login");
-		LoginPage l = new LoginPage();
-		loginBtn.setOnAction(new EventHandler<>(){
+		login.loginBtn.setOnAction(new EventHandler<>(){
 		@Override
-			public void handle(ActionEvent event) {
-				if(l.loggedIn(fName.getText(), lName.getText(), date)){
-					primaryStage.setScene(new Scene(signupPage));
-					primaryStage.show();
-				} //else {}  create acc button show up + create acc page
+			public void handle(ActionEvent event) {	
+				primaryStage.setScene(new Scene(signupPage));
+				primaryStage.show();
 			}
 		});
-		
-		VBox loginPage = new VBox(20);
-		loginPage.getChildren().addAll(medBridge, subTitle, labels, loginBtn);
-		loginPage.setAlignment(Pos.TOP_CENTER);
-		
-		primaryStage.setTitle("MedBridge Pediatrician Office");
-		primaryStage.setScene(new Scene(loginPage, 600, 600));
+
+		primaryStage.setScene(nurse.createNurseView());
 		primaryStage.show();
+	}
+	public Button createButton(String s, double w, double h) {
+		Button button = new Button(s);
+		button.setPrefSize(w, h);
+		button.setFont(new Font(20));
+		button.setStyle("-fx-background-color: #4874c4");
+		return button;
+	}
+	
+	public Label createLabel(String s, int f) {
+		Label label = new Label(s);
+		label.setFont(new Font(f));
+		return label;
 	}
 }
