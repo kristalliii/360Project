@@ -30,6 +30,7 @@ public class PediatricianOffice extends Application {
 		LoginPage login = new LoginPage(); //login page
 		VBox signupPage = new VBox(20); //signup page
 		nurseView nurse = new nurseView(); //nurse vitals view
+		PatientView patient = new PatientView(); //patient's view
 		
 		login.loginBtn.setOnAction(new EventHandler<>(){
 		@Override
