@@ -57,7 +57,7 @@ public class nurseView extends PediatricianOffice {
 	Button inbox = createButton("Inbox", 100, 40);
 	Button next = createButton("Next", 80, 40);
 	
-	Scene createNurseView(Stage s, String fn, String ln, doctorMessagingSystem d) {
+	Scene createNurseView(Stage s, String fn, String ln) {
 		g.add(vitalsLabel, 0, 0);
 		g.add(aboveTwelve, 1, 0);
 		g.add(ageLabel, 0, 1);
@@ -94,15 +94,7 @@ public class nurseView extends PediatricianOffice {
 		b.setMargin(buttons, new Insets(15, 15, 15, 15));
 		b.setAlignment(patientIn, Pos.TOP_CENTER);
 		buttons.setAlignment(Pos.CENTER);
-		
-		inbox.setOnAction(new EventHandler<>() {
-			@Override
-			public void handle(ActionEvent e) {
-				s.setScene(d.createInboxView(s, fn + ln));
-				s.show();
-			}
-		});
-		
+
 		return new Scene(b, 600,400);
 	}
 }

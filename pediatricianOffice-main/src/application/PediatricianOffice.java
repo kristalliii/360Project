@@ -31,8 +31,13 @@ public class PediatricianOffice extends Application {
 		PatientView patientView = new PatientView(); //patient's view
 		DoctorView docView = new DoctorView();
 		
-
+		User u = new User();
+		//CreateAccount signUp = new CreateAccount();
+		patientMessagingSystem patientMsgs = new patientMessagingSystem();
+		doctorMessagingSystem docMsgs = new doctorMessagingSystem();
 		
+
+		//login page button functionality
 		 loginPage.doctor.setOnAction(e -> {
 		        primaryStage.setScene(loginPage.doctorLogin());
 		        primaryStage.show();
@@ -49,6 +54,54 @@ public class PediatricianOffice extends Application {
 		        primaryStage.setScene(loginPage.nurseLogin());
 		        primaryStage.show();
 		    });
+		//diff users login
+			loginPage.docLogin.setOnAction(new EventHandler<>() { //doc login, create doc view
+				@Override
+				public void handle(ActionEvent e) {
+					if(u.docExists(loginPage.fName.getText(), loginPage.lName.getText(), loginPage.date)) {
+						primaryStage.setScene(docView.DoctorViewScene(primaryStage, loginPage.fName.getText(), loginPage.lName.getText(), loginPage.date));
+					} else {
+						primaryStage.setScene(signUp.createAccountScene(primaryStage));
+					}
+				}
+			});
+			loginPage.nursLogin.setOnAction(new EventHandler<>() { //nurse login, create nurse view
+				@Override
+				public void handle(ActionEvent e) {
+					if(u.nurseExists(loginPage.fName.getText(), loginPage.lName.getText(), loginPage.date)) {
+						primaryStage.setScene(nurseView.createNurseView(primaryStage, loginPage.fName.getText(), loginPage.lName.getText()));
+					} else {
+						primaryStage.setScene(signUp.createAccountScene(primaryStage));
+					}
+				}
+			});
+			loginPage.patLogin.setOnAction(new EventHandler<>() { //patient login, create patient view
+				@Override
+				public void handle(ActionEvent e) {
+					if(u.patientExists(loginPage.fName.getText(), loginPage.lName.getText(), loginPage.date)) {
+						primaryStage.setScene(patientView.createPatientViewScene(primaryStage, loginPage.fName.getText(), loginPage.lName.getText(), loginPage.date));
+					} else {
+						primaryStage.setScene(signUp.createAccountScene(primaryStage));
+					}
+				}
+			});
+			
+			//button functionality for nurse view
+			nurseView.inbox.setOnAction(new EventHandler<>() { //change to nurse inbox
+				@Override
+				public void handle(ActionEvent e) {
+					primaryStage.setScene(docMsgs.createInboxView(primaryStage, loginPage.fName.toString() + " " + loginPage.lName.toString()));			
+				}
+			});
+			nurseView.next.setOnAction(new EventHandler<>() { //write patient intake file
+				@Override
+				public void handle(ActionEvent e) {
+					String[] pName = nurseView.patientName.getText().split(" ");
+					u.writePatientIntake(pName[0], pName[1], null);	
+				}
+			});
+			
+			//button functionality for doctor view
 		
 		primaryStage.setTitle("MedBridge Pediatrician Office");
 		primaryStage.setScene(loginPage.createLogin());

@@ -25,7 +25,9 @@ public class LoginPage extends PediatricianOffice{
 	final DatePicker DOB = new DatePicker();
 	LocalDate date = DOB.getValue();
 	VBox loginPage = new VBox(20);
-	Button loginBtn = new Button("Login");
+	Button docLogin = new Button("Login");
+	Button nursLogin = new Button("Login");
+	Button patLogin = new Button("Login");
 	
 	Scene createLogin() {
 		VBox buttons = new VBox(20);
@@ -42,7 +44,7 @@ public class LoginPage extends PediatricianOffice{
 		labels.add(DOBLabel, 0, 2);
 		labels.add(DOB, 1, 2);
 		labels.setAlignment(Pos.TOP_CENTER);
-		loginPage.getChildren().addAll(medBridge, subTitle, labels, loginBtn);
+		loginPage.getChildren().addAll(medBridge, subTitle, labels, docLogin);
 		loginPage.setAlignment(Pos.TOP_CENTER);
 		return new Scene(loginPage, 700, 400);
 	}
@@ -55,7 +57,7 @@ public class LoginPage extends PediatricianOffice{
 		labels.add(DOBLabel, 0, 2);
 		labels.add(DOB, 1, 2);
 		labels.setAlignment(Pos.TOP_CENTER);
-		loginPage.getChildren().addAll(medBridge, subTitle, labels, loginBtn);
+		loginPage.getChildren().addAll(medBridge, subTitle, labels, patLogin);
 		loginPage.setAlignment(Pos.TOP_CENTER);
 		return new Scene(loginPage, 700, 400);
 	}
@@ -68,7 +70,7 @@ public class LoginPage extends PediatricianOffice{
 		labels.add(DOBLabel, 0, 2);
 		labels.add(DOB, 1, 2);
 		labels.setAlignment(Pos.TOP_CENTER);
-		loginPage.getChildren().addAll(medBridge, subTitle, labels, loginBtn);
+		loginPage.getChildren().addAll(medBridge, subTitle, labels, nursLogin);
 		loginPage.setAlignment(Pos.TOP_CENTER);
 		return new Scene(loginPage, 700, 400);
 	}
