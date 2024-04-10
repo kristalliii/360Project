@@ -111,12 +111,12 @@ public class DoctorView extends PediatricianOffice{
 		history.setLayoutY(350);
 		history.setFont(new Font(22));
 		
-		/*TextField historytf = new TextField(patientView.historyTextArea.getText());
+		TextField historytf = new TextField(patientView.historyTextArea.getText());
 		historytf.setLayoutX(20);
 		historytf.setLayoutY(390);
 		historytf.setEditable(false);
 		historytf.setMinHeight(130);
-		historytf.setMinWidth(250);*/
+		historytf.setMinWidth(250);
 		
 		//submit button
 		Button submit = new Button("Submit");
@@ -125,7 +125,7 @@ public class DoctorView extends PediatricianOffice{
 		submit.setLayoutX(500);
 		submit.setLayoutY(530);
 		
-		rootNode.getChildren().addAll( Patientinfo, name, nametf,  weight, weighttf, height, heighttf, bp, bptf, bt, bttf, TResults, TResult, prescription, pta, history, /*historytf,*/ submit, dob, dobtf);
+		rootNode.getChildren().addAll( Patientinfo, name, nametf,  weight, weighttf, height, heighttf, bp, bptf, bt, bttf, TResults, TResult, prescription, pta, history, historytf, submit, dob, dobtf);
 		
 		VBox layout = new VBox(20);
         layout.setPadding(new Insets(20));
