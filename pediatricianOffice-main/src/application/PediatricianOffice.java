@@ -31,56 +31,20 @@ public class PediatricianOffice extends Application {
 		PatientView patientView = new PatientView(); //patient's view
 		DoctorView docView = new DoctorView();
 		
-		ArrayList<Doctor> docs = new ArrayList<Doctor>();
-		ArrayList<Nurse> nurses = new ArrayList<Nurse>();
-		
-		loginPage.loginBtn.setOnAction(new EventHandler<>(){
-			@Override
-			public void handle(ActionEvent event) {	
-				for(Doctor d: docs) {
-					//if name is in doc list, sign in to doc
-				}
-				for(Nurse n: nurses) {
-				//if name is in nurse list, sign in to nurse
-				}
-				
-				//if name is in patient file, sign in + load patient info
-				primaryStage.setScene(new Scene(signupPage));
-				primaryStage.show();
-			}
-		});
-		/*loginPage.doctor.setOnAction(new EventHandler<>() {
-			@Override
-			public void handle(ActionEvent e) {
-				primaryStage.setScene(docView.DoctorViewScene(primaryStage, loginPage.fName.getText(), loginPage.fName.getText(), loginPage.date));
-				primaryStage.show();
-			}
-		});*/
+
 		
 		 loginPage.doctor.setOnAction(e -> {
 		        primaryStage.setScene(loginPage.doctorLogin());
 		        primaryStage.show();
 		    });
 		
-		/*loginPage.patient.setOnAction(new EventHandler<>() {
-			@Override
-			public void handle(ActionEvent e) {
-				primaryStage.setScene(patientView.createPatientViewScene(primaryStage, loginPage.fName.getText(), loginPage.fName.getText(), loginPage.date));
-				primaryStage.show();
-			}
-		});*/
+	
 		 loginPage.patient.setOnAction(e -> {
 		        primaryStage.setScene(loginPage.patientLogin());
 		        primaryStage.show();
 		    });
 		 
-		/*loginPage.nurse.setOnAction(new EventHandler<>() {
-			@Override
-			public void handle(ActionEvent e) {
-				primaryStage.setScene(nurseView.createNurseView());
-				primaryStage.show();
-			}
-		});*/
+	
 		 loginPage.nurse.setOnAction(e -> {
 		        primaryStage.setScene(loginPage.nurseLogin());
 		        primaryStage.show();
