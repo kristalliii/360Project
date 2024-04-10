@@ -52,7 +52,7 @@ public class PediatricianOffice extends Application {
 		loginPage.doctor.setOnAction(new EventHandler<>() {
 			@Override
 			public void handle(ActionEvent e) {
-				primaryStage.setScene(loginPage.doctorLogin());
+				primaryStage.setScene(docView.DoctorViewScene(primaryStage, loginPage.fName.getText(), loginPage.fName.getText(), loginPage.date));
 				primaryStage.show();
 			}
 		});
