@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class User {
 	//write new file for doctor info
 	void writeDocFile(String fn, String ln, LocalDate DOB) {
-		File docFile = new File("Doc" + fn + ln + DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		File docFile = new File("Doc" + fn + ln + DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ".txt");
 		Writer writer;
 		try {
 			writer = new FileWriter(docFile);
@@ -24,13 +24,13 @@ public class User {
 	
 	//check if doc alr exists to login
 	boolean docExists(String fn, String ln, LocalDate DOB) {
-		File docFile = new File("Doc" + fn + ln+ DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		File docFile = new File("Doc" + fn + ln+ DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ".txt");
 		return docFile.exists();
 	}
 	
 	//write new file for nurse info
 	void writeNurseFile(String fn, String ln, LocalDate DOB) {
-		File nFile = new File("Nurse" + fn + ln + DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		File nFile = new File("Nurse" + fn + ln + DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ".txt");
 		Writer writer;
 		try {
 			writer = new FileWriter(nFile);
@@ -44,13 +44,13 @@ public class User {
 	
 	//check if nurse alr exists to login
 	boolean nurseExists(String fn, String ln, LocalDate DOB) {
-		File nFile = new File("Nurse" + fn + ln+ DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		File nFile = new File("Nurse" + fn + ln+ DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ".txt");
 		return nFile.exists();
 	}
 	
 	//write patient intake file after nurse puts in info
 	void writePatientIntake(String fn, String ln, LocalDate DOB, String age, String height, String weight, String bp, String temp, String allergies, String meds, String history) {
-		File pFile = new File("Patient" + fn + ln + DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		File pFile = new File("Patient" + fn + ln + DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "Intake.txt");
 		Writer writer;
 		try {
 			writer = new FileWriter(pFile);
@@ -64,7 +64,7 @@ public class User {
 	
 	//write patient physical file after doctor puts in info
 	void writePatientPhys(String fn, String ln, LocalDate DOB, String testResults, String prescription) {
-		File pFile = new File("Patient" + fn + ln + DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		File pFile = new File("Patient" + fn + ln + DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "Physical.txt");
 		Writer writer;
 		try {
 			writer = new FileWriter(pFile);
@@ -78,7 +78,7 @@ public class User {
 	
 	//write patient acc file
 	void writePatientFile(String fn, String ln, LocalDate DOB) {
-		File pFile = new File("Patient" + fn + ln + DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		File pFile = new File("Patient" + fn + ln + DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ".txt");
 		Writer writer;
 		try {
 			writer = new FileWriter(pFile);
@@ -92,8 +92,8 @@ public class User {
 	
 	//check if patient alr exists to login
 	boolean patientExists(String fn, String ln, LocalDate DOB) {
-		File inFile = new File("Patient" + fn + ln+ DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "Intake");
-		File physFile = new File("Patient" + fn + ln+ DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "Physical");
+		File inFile = new File("Patient" + fn + ln+ DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "Intake.txt");
+		File physFile = new File("Patient" + fn + ln+ DOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "Physical.txt");
 		return physFile.exists() && inFile.exists();
 	}
 }
