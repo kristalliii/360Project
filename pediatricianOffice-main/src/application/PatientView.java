@@ -26,6 +26,7 @@ public class PatientView extends PediatricianOffice{
     TextField bloodPressureTextField = new TextField();
     TextArea allergiesTextArea = new TextArea();
     TextArea historyTextArea = new TextArea();
+    Button PatientMessaging = new Button("Inbox");
 	 public Scene createPatientViewScene(Stage primaryStage, String firstName, String lastName, LocalDate dateOfBirth) {
 		 try {
 				Scanner read = new Scanner(new File("Patient" + firstName + lastName + dateOfBirth.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "Intake.txt"));
@@ -119,7 +120,7 @@ public class PatientView extends PediatricianOffice{
 	        buttons.setAlignment(Pos.CENTER);
 	        Button saveButton = new Button("Save");
 	        Button cancelButton = new Button("Cancel");
-	        buttons.getChildren().addAll(saveButton, cancelButton);
+	        buttons.getChildren().addAll(PatientMessaging, saveButton, cancelButton);
 
 	        // Layout
 	        VBox layout = new VBox(20);

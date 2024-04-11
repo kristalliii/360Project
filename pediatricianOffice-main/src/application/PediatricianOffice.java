@@ -143,6 +143,13 @@ public class PediatricianOffice extends Application {
 				}
 			});
 			
+			patientView.PatientMessaging.setOnAction(new EventHandler<>() { //change to patient inbox
+				@Override
+				public void handle(ActionEvent e) {
+					primaryStage.setScene(patientMsgs.createInboxView(primaryStage, loginPage.fName.getText(), loginPage.lName.getText(), loginPage.date.toString()));			
+				}
+			});
+			
 			//button functionality for doctor view
 			docView.submit.setOnAction(new EventHandler<>() { //write patient physical file
 				@Override
