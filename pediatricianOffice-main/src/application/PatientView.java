@@ -1,6 +1,10 @@
 package application;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,7 +20,30 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class PatientView extends PediatricianOffice{
+    TextField weightTextField = new TextField();	        
+    TextField heightTextField = new TextField();
+    TextField temperatureTextField = new TextField();
+    TextField bloodPressureTextField = new TextField();
+    TextArea allergiesTextArea = new TextArea();
+    TextArea historyTextArea = new TextArea();
 	 public Scene createPatientViewScene(Stage primaryStage, String firstName, String lastName, LocalDate dateOfBirth) {
+		 try {
+				Scanner read = new Scanner(new File("Patient" + firstName + lastName + dateOfBirth.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "Intake.txt"));
+				firstName = read.nextLine();
+				lastName = read.nextLine();
+				String dob = read.nextLine();
+				String age = read.nextLine();
+				heightTextField.setText(read.nextLine());
+				weightTextField.setText(read.nextLine());
+				bloodPressureTextField.setText(read.nextLine());
+				temperatureTextField.setText(read.nextLine());
+				allergiesTextArea.setText(read.nextLine());
+				String meds = read.nextLine();
+				historyTextArea.setText(read.nextLine());
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        // Labels for patient information
 	        Label patientInfoLabel = new Label("Patient Information");
 	        patientInfoLabel.setFont(new Font(20));
@@ -34,22 +61,17 @@ public class PatientView extends PediatricianOffice{
 	        vitalsLabel.setFont(new Font(20));
 
 	        Label weightLabel = new Label("Weight:");
-	        TextField weightTextField = new TextField();
 
 	        Label heightLabel = new Label("Height:");
-	        TextField heightTextField = new TextField();
 
 	        Label temperatureLabel = new Label("Body Temperature:");
-	        TextField temperatureTextField = new TextField();
 
 	        Label bloodPressureLabel = new Label("Blood Pressure:");
-	        TextField bloodPressureTextField = new TextField();
 
 	        // Allergies/concerns
 	        Label allergiesLabel = new Label("Allergies/Concerns");
 	        allergiesLabel.setFont(new Font(20));
 
-	        TextArea allergiesTextArea = new TextArea();
 	        allergiesTextArea.setPrefHeight(100);
 	        allergiesTextArea.setWrapText(true);
 
@@ -57,7 +79,6 @@ public class PatientView extends PediatricianOffice{
 	        Label historyLabel = new Label("Previous History");
 	        historyLabel.setFont(new Font(20));
 
-	        TextArea historyTextArea = new TextArea();
 	        historyTextArea.setPrefHeight(150);
 	        historyTextArea.setWrapText(true);
 

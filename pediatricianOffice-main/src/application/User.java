@@ -54,7 +54,7 @@ public class User {
 		Writer writer;
 		try {
 			writer = new FileWriter(pFile);
-			String pInfo = age + "\n" + height + "\n" + weight + "\n" + bp + "\n" + temp + "\n" + allergies + "\n" + meds + "\n" + history;
+			String pInfo = fn + "\n" + ln + "\n" + DOB.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "\n" + age + "\n" + height + "\n" + weight + "\n" + bp + "\n" + temp + "\n" + allergies + "\n" + meds + "\n" + history;
 			writer.write(pInfo);
 			writer.close();
 		} catch (IOException e) {
@@ -92,8 +92,9 @@ public class User {
 	
 	//check if patient alr exists to login
 	boolean patientExists(String fn, String ln, LocalDate DOB) {
+		File pFile = new File("Patient" + fn + ln + DOB.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + ".txt");
 		File inFile = new File("Patient" + fn + ln+ DOB.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "Intake.txt");
 		File physFile = new File("Patient" + fn + ln+ DOB.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "Physical.txt");
-		return physFile.exists() && inFile.exists();
+		return pFile.exists(); //physFile.exists() && inFile.exists();
 	}
 }

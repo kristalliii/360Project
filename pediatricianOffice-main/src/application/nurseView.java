@@ -38,7 +38,9 @@ public class nurseView extends PediatricianOffice {
 	Label tempLabel = createLabel("TEMPERATURE: ", 15);
 	TextField temp = new TextField();
 	
-	DatePicker today = new DatePicker();
+	Label DOBLabel = createLabel("DOB: ", 15);
+	final DatePicker DOB = new DatePicker();
+	
 	CheckBox aboveTwelve = new CheckBox("ABOVE AGE 12");
 	
 	Label allergiesLabel = createLabel("ALLERGIES: ", 15);
@@ -46,6 +48,9 @@ public class nurseView extends PediatricianOffice {
 	
 	Label medsLabel = createLabel("MEDICATIONS: ", 15);
 	TextArea meds = new TextArea();
+	
+	Label histLabel = createLabel("HISTORY: ", 15);
+	TextArea hist = new TextArea();
 	
 	Label patientIn = createLabel("Nurse", 30);
 	
@@ -58,6 +63,7 @@ public class nurseView extends PediatricianOffice {
 	Button next = createButton("Next", 80, 40);
 	
 	Scene createNurseView(Stage s, String fn, String ln) {
+		patientIn.setText(fn + " " + ln);
 		g.add(vitalsLabel, 0, 0);
 		g.add(aboveTwelve, 1, 0);
 		g.add(ageLabel, 0, 1);
@@ -70,14 +76,18 @@ public class nurseView extends PediatricianOffice {
 		g.add(bp, 1, 4);
 		g.add(tempLabel, 0, 5);
 		g.add(temp, 1, 5);
+		g.add(DOBLabel, 0, 6);
+		g.add(DOB, 1, 6);
 		VBox v = new VBox();
-		VBox v2 = new VBox();
-		allergies.setPrefSize(200, 150);
+		VBox v2 = new VBox(10);
+		allergies.setPrefSize(200, 100);
 		allergies.setWrapText(true);
-		meds.setPrefSize(200, 150);
+		meds.setPrefSize(200, 100);
+		meds.setWrapText(true);
+		hist.setPrefSize(200, 100);
 		meds.setWrapText(true);
 		name.getChildren().addAll(patient, patientName);
-		v.getChildren().addAll(allergiesLabel, allergies, medsLabel, meds);
+		v.getChildren().addAll(allergiesLabel, allergies, medsLabel, meds, histLabel, hist);
 		v2.getChildren().addAll(name, g);
 		
 		g.setHgap(10);

@@ -18,12 +18,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public class DoctorView extends PediatricianOffice{
+	String fn, ln;
+	LocalDate dateOfBirth;
 	Group rootNode = new Group();
     TextField weighttf = new TextField();
     TextField heighttf = new TextField();
     TextField bptf = new TextField();
     TextField bttf = new TextField();
 	TextField historytf = new TextField();
+	Button submit = new Button("Submit");
+	TextArea TResult = new TextArea();
+	TextArea pta = new TextArea();
 	public Scene DoctorViewScene(Stage primaryStage, String fName, String lName, LocalDate dOB) {
 		try {
 			Scanner read = new Scanner(new File("Patient" + fName + lName + dOB.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "Intake.txt"));
@@ -50,7 +55,9 @@ public class DoctorView extends PediatricianOffice{
 		name.setLayoutX(30);
 		name.setLayoutY(50);
 		
-		TextField nametf = new TextField(fName + " " + lName);
+		fn = fName;
+		ln = lName;
+		TextField nametf = new TextField(fn + " " + ln);
         nametf.setEditable(false);
         nametf.setLayoutX(80);
         nametf.setLayoutY(48);
@@ -60,7 +67,8 @@ public class DoctorView extends PediatricianOffice{
         dob.setLayoutX(280);
         dob.setLayoutY(130);
         
-        TextField dobtf = new TextField(dOB.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        dateOfBirth = dOB;
+        TextField dobtf = new TextField(dateOfBirth.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         dobtf.setLayoutX(380);
         dobtf.setLayoutY(128);
         dobtf.setEditable(false);
@@ -103,7 +111,6 @@ public class DoctorView extends PediatricianOffice{
 		TResults.setLayoutY(180);
 		TResults.setFont(new Font(22));
 		
-		TextArea TResult = new TextArea();
 		TResult.setLayoutX(20);
 		TResult.setLayoutY(210);
 		TResult.setMinSize(560, 50);
@@ -115,7 +122,6 @@ public class DoctorView extends PediatricianOffice{
 		prescription.setLayoutY(350);
 		prescription.setFont(new Font(22));
 		
-		TextArea pta = new TextArea();
 		pta.setLayoutX(300);
 		pta.setLayoutY(390);
 		pta.setMinSize(280, 50);
@@ -135,7 +141,6 @@ public class DoctorView extends PediatricianOffice{
 		historytf.setMinWidth(250);
 		
 		//submit button
-		Button submit = new Button("Submit");
 		submit.setPrefWidth(60);
 		submit.setPrefHeight(30);
 		submit.setLayoutX(500);

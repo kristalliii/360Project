@@ -122,18 +122,34 @@ public class PediatricianOffice extends Application {
 			nurseView.inbox.setOnAction(new EventHandler<>() { //change to nurse inbox
 				@Override
 				public void handle(ActionEvent e) {
-					primaryStage.setScene(docMsgs.createInboxView(primaryStage, loginPage.fName.toString() + " " + loginPage.lName.toString()));			
+					primaryStage.setScene(docMsgs.createInboxView(primaryStage, loginPage.fName.getText() + " " + loginPage.lName.getText()));			
 				}
 			});
 			nurseView.next.setOnAction(new EventHandler<>() { //write patient intake file
 				@Override
 				public void handle(ActionEvent e) {
 					String[] pName = nurseView.patientName.getText().split(" ");
-					//u.writePatientIntake(pName[0], pName[1], null);	
+					u.writePatientIntake(pName[0], pName[1], nurseView.DOB.getValue(), nurseView.age.getText(), nurseView.height.getText(), nurseView.weight.getText(),
+							nurseView.bp.getText(), nurseView.temp.getText(), nurseView.allergies.getText(), nurseView.meds.getText(), nurseView.hist.getText());
+					nurseView.patientName.clear();
+					nurseView.age.clear();
+					nurseView.height.clear();
+					nurseView.weight.clear();
+					nurseView.bp.clear();
+					nurseView.temp.clear();
+					nurseView.allergies.clear();
+					nurseView.meds.clear();
+					nurseView.hist.clear();
 				}
 			});
 			
 			//button functionality for doctor view
+			docView.submit.setOnAction(new EventHandler<>() { //write patient physical file
+				@Override
+				public void handle(ActionEvent e) {
+					u.writePatientPhys(docView.fn, docView.ln, docView.dateOfBirth, docView.TResult.getText(), docView.pta.getText());
+				}
+			});
 		
 		primaryStage.setTitle("MedBridge Pediatrician Office");
 		primaryStage.setScene(loginPage.createLogin());
