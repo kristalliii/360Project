@@ -2,6 +2,7 @@ package application;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -13,12 +14,32 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class DoctorView extends PediatricianOffice{
+	Group rootNode = new Group();
+    TextField weighttf = new TextField();
+    TextField heighttf = new TextField();
+    TextField bptf = new TextField();
+    TextField bttf = new TextField();
+	TextField historytf = new TextField();
 	public Scene DoctorViewScene(Stage primaryStage, String fName, String lName, LocalDate dOB) {
-		
-		Group rootNode = new Group();
-		
+		try {
+			Scanner read = new Scanner(new File("Patient" + fName + lName + dOB.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "Intake.txt"));
+			fName = read.nextLine();
+			lName = read.nextLine();
+			String dob = read.nextLine();
+			String age = read.nextLine();
+			heighttf.setText(read.nextLine());
+			weighttf.setText(read.nextLine());
+			bptf.setText(read.nextLine());
+			bttf.setText(read.nextLine());
+			historytf.setText(read.nextLine());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Label Patientinfo = new Label("Patient Information");
 		Patientinfo.setLayoutX(220);
 		Patientinfo.setLayoutY(0);
@@ -39,7 +60,7 @@ public class DoctorView extends PediatricianOffice{
         dob.setLayoutX(280);
         dob.setLayoutY(130);
         
-        TextField dobtf = new TextField(dOB.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        TextField dobtf = new TextField(dOB.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         dobtf.setLayoutX(380);
         dobtf.setLayoutY(128);
         dobtf.setEditable(false);
@@ -49,7 +70,6 @@ public class DoctorView extends PediatricianOffice{
         weight.setLayoutX(30);
         weight.setLayoutY(90);
         
-        TextField weighttf = new TextField();
         weighttf.setLayoutX(80);
         weighttf.setLayoutY(88);
 		
@@ -58,7 +78,6 @@ public class DoctorView extends PediatricianOffice{
         height.setLayoutX(30);
         height.setLayoutY(130);
         
-        TextField heighttf = new TextField();
         heighttf.setLayoutX(80);
         heighttf.setLayoutY(128);
 		
@@ -67,7 +86,6 @@ public class DoctorView extends PediatricianOffice{
         bp.setLayoutX(290);
         bp.setLayoutY(50);
         
-        TextField bptf = new TextField();
         bptf.setLayoutX(380);
         bptf.setLayoutY(48);
 		
@@ -76,7 +94,6 @@ public class DoctorView extends PediatricianOffice{
         bt.setLayoutX(270);
         bt.setLayoutY(90);
         
-        TextField bttf = new TextField();
         bttf.setLayoutX(380);
         bttf.setLayoutY(88);
 		
@@ -111,7 +128,6 @@ public class DoctorView extends PediatricianOffice{
 		history.setLayoutY(350);
 		history.setFont(new Font(22));
 		
-		TextField historytf = new TextField(patientView.historyTextArea.getText());
 		historytf.setLayoutX(20);
 		historytf.setLayoutY(390);
 		historytf.setEditable(false);
@@ -131,8 +147,6 @@ public class DoctorView extends PediatricianOffice{
         layout.setPadding(new Insets(20));
         layout.getChildren().addAll(rootNode);	
 
-		//stage.setScene(scene);
-        //return scene;
         Scene scene2 = new Scene(layout, 600, 600);
         return scene2;
 	}
